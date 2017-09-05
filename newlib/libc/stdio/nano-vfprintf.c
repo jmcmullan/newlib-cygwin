@@ -487,6 +487,7 @@ _DEFUN(_VFPRINTF_R, (data, fp, fmt0, ap),
   int (*pfunc)(struct _reent *, FILE *, _CONST char *, size_t len);
 
   pfunc = __SPRINT;
+  n = 0;
 
 #ifndef STRING_ONLY
   /* Initialize std streams if not dealing with sprintf family.  */
@@ -551,7 +552,7 @@ _DEFUN(_VFPRINTF_R, (data, fp, fmt0, ap),
        *	-- ANSI X3J11
        */
       flag_chars = "#-0+ ";
-      for (; cp = memchr (flag_chars, *fmt, 5); fmt++)
+      for (; (cp = memchr (flag_chars, *fmt, 5)) != 0; fmt++)
 	prt_data.flags |= (1 << (cp - flag_chars));
 
       if (prt_data.flags & SPACESGN)

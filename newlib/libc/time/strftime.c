@@ -302,7 +302,7 @@ locale, hard-coding the "C" locale settings.
 #  define CHAR		char		/* string type basis */
 #  define CQ(a)		a		/* character constant qualifier */
 #  define SFLG				/* %s flag (null for normal char) */
-#  define _ctloc(x) (ctloclen = strlen (ctloc = _CurrentTimeLocale->x), ctloc)
+#  define _ctloc(x) (ctloclen = strlen (ctloc = _CurrentTimeLocale->x), (void)ctloc)
 #  define snprintf	sniprintf	/* avoid to pull in FP functions. */
 #  define TOLOWER(c)	tolower((int)(unsigned char)(c))
 #  define STRTOUL(c,p,b) strtoul((c),(p),(b))
@@ -348,9 +348,6 @@ locale, hard-coding the "C" locale settings.
 #if YEAR_BASE < 0
 #  error "YEAR_BASE < 0"
 #endif
-
-static _CONST int dname_len[7] =
-{6, 6, 7, 9, 8, 6, 8};
 
 /* Using the tm_year, tm_wday, and tm_yday components of TIM_P, return
    -1, 0, or 1 as the adjustment to add to the year for the ISO week

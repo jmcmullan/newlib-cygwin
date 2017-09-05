@@ -60,11 +60,11 @@ static intmax_t
 _strtoimax_l(struct _reent *rptr, const char * __restrict nptr,
 	     char ** __restrict endptr, int base, locale_t loc)
 {
-	const char *s = (const unsigned char *)nptr;
-	uintmax_t acc;
-	char c;
+	const unsigned char *s = (const unsigned char *)nptr;
+	uintmax_t acc = 0;
+	unsigned char c;
 	uintmax_t cutoff;
-	int neg = 0, any, cutlim;
+	int neg = 0, any = 0, cutlim;
 
 	/*
 	 * Skip white space and pick up leading +/- sign if any.
@@ -135,12 +135,11 @@ _strtoimax_l(struct _reent *rptr, const char * __restrict nptr,
 		acc = neg ? INTMAX_MIN : INTMAX_MAX;
 		rptr->_errno = ERANGE;
 	} else if (!any) {
-noconv:
 		rptr->_errno = EINVAL;
 	} else if (neg)
 		acc = -acc;
 	if (endptr != NULL)
-		*endptr = (char *)(any ? s - 1 : nptr);
+		*endptr = (any ? (char *)s - 1 : (char *)nptr);
 	return (acc);
 }
 

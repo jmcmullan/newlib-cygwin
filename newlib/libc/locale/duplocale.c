@@ -42,12 +42,13 @@ PORTABILITY
 struct __locale_t *
 _duplocale_r (struct _reent *p, struct __locale_t *locobj)
 {
-  struct __locale_t tmp_locale, *new_locale;
-  int i;
-
 #ifndef _MB_CAPABLE
   return __get_C_locale ();
 #else /* _MB_CAPABLE */
+  struct __locale_t tmp_locale, *new_locale;
+#ifdef __HAVE_LOCALE_INFO__
+  int i;
+#endif
   /* LC_GLOBAL_LOCALE denotes the global locale. */
   if (locobj == LC_GLOBAL_LOCALE)
     locobj = __get_global_locale ();

@@ -60,9 +60,9 @@ static uintmax_t
 _strtoumax_l(struct _reent *rptr, const char * __restrict nptr,
 	     char ** __restrict endptr, int base, locale_t loc)
 {
-	const char *s = (const unsigned char *)nptr;
+	const unsigned char *s = (const unsigned char *)nptr;
 	uintmax_t acc;
-	char c;
+	unsigned char c;
 	uintmax_t cutoff;
 	int neg = 0, any, cutlim;
 
@@ -122,7 +122,7 @@ noconv:
 	} else if (neg)
 		acc = -acc;
 	if (endptr != NULL)
-		*endptr = (char *)(any ? s - 1 : nptr);
+		*endptr = (any ? (char *)s - 1 : (char *)nptr);
 	return (acc);
 }
 

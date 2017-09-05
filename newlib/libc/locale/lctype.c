@@ -45,10 +45,10 @@ __ctype_load_locale (struct __locale_t *locale, const char *name,
 		     void *f_wctomb, const char *charset, int mb_cur_max)
 {
   int ret;
-  struct lc_ctype_T ct;
-  char *bufp = NULL;
 
 #ifdef __CYGWIN__
+  struct lc_ctype_T ct;
+  char *bufp = NULL;
   extern int __set_lc_ctype_from_win (const char *, const struct lc_ctype_T *,
 				      struct lc_ctype_T *, char **, void *,
 				      const char *, int);
@@ -81,7 +81,7 @@ __ctype_load_locale (struct __locale_t *locale, const char *name,
       ret = 0;
     }
 #else
-  /* TODO */
+  ret = 0;
 #endif
   return ret;
 }

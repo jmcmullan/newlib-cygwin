@@ -384,7 +384,7 @@ extern void __malloc_unlock();
 #if DEBUG 
 #include <assert.h>
 #else
-#define assert(x) ((void)0)
+#define assert(x) ((void)(x))
 #endif
 
 

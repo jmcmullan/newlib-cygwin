@@ -53,6 +53,9 @@
 #include <sys/config.h>
 #include <reent.h>
 
+void __malloc_lock (struct _reent *ptr);
+void __malloc_unlock (struct _reent *ptr);
+
 #define RARG struct _reent *reent_ptr,
 #define RONEARG struct _reent *reent_ptr
 #define RCALL reent_ptr,
@@ -471,7 +474,6 @@ void * nano_calloc(RARG malloc_size_t n, malloc_size_t elem)
 void * nano_realloc(RARG void * ptr, malloc_size_t size)
 {
     void * mem;
-    chunk * p_to_realloc;
 
     if (ptr == NULL) return nano_malloc(RCALL size);
 

@@ -160,6 +160,7 @@ static double zero = 0.0;
 	ax = hx&0x7fffffff;
 
 	k = 1;
+    c = 0;
 	if (hx < 0x3FDA827A) {			/* x < 0.41422  */
 	    if(ax>=0x3ff00000) {		/* x <= -1.0 */
 		if(x==-1.0) return -two54/zero; /* log1p(-1)=+inf */

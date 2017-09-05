@@ -50,6 +50,7 @@ static float zero = 0.0;
 	GET_FLOAT_WORD(hx,x);
 	ax = hx&0x7fffffff;
 
+    c = 0;
 	k = 1;
 	if (!FLT_UWORD_IS_FINITE(hx)) return x+x;
 	if (hx < 0x3ed413d7) {			/* x < 0.41422  */

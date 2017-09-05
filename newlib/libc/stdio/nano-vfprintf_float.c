@@ -179,8 +179,7 @@ _printf_float (struct _reent *data,
   int expsize = 0;
   /* Actual number of digits returned by cvt.  */
   int ndig = 0;
-  char *cp;
-  int n;
+  char *cp = NULL;
   /* Field size expanded by dprec(not for _printf_float).  */
   int realsz;
   char code = pdata->code;

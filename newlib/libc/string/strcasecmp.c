@@ -49,8 +49,8 @@ _DEFUN (strcasecmp, (s1, s2),
   int d = 0;
   for ( ; ; )
     {
-      _CONST int c1 = tolower(*s1++);
-      _CONST int c2 = tolower(*s2++);
+      _CONST int c1 = tolower((unsigned char)(*s1++));
+      _CONST int c2 = tolower((unsigned char)(*s2++));
       if (((d = c1 - c2) != 0) || (c2 == '\0'))
         break;
     }

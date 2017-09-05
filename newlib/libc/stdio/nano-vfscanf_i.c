@@ -50,7 +50,7 @@ _scanf_chars (struct _reent *rptr,
 	      FILE *fp, va_list *ap)
 {
   int n;
-  char *p;
+  char *p = NULL;
 
   if (pdata->width == 0)
     pdata->width = (pdata->code == CT_CHAR) ? 1 : (size_t)~0;
