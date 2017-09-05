@@ -609,9 +609,19 @@ _DEFUN(_VFPRINTF_R, (data, fp, fmt0, ap),
 
       /* The length modifiers.  */
       flag_chars = "hlL";
-      if ((cp = memchr (flag_chars, *fmt, 3)) != NULL)
+      int i;
+      for (i=0;i < 2; i++) if ((cp = memchr (flag_chars, *fmt, 3)) != NULL)
 	{
-	  prt_data.flags |= (SHORTINT << (cp - flag_chars));
+      uint16_t flag = (SHORTINT << (cp - flag_chars));
+      if (flag == LONGINT && (prt_data.flags & (LONGINT | QUADINT)))
+      {
+          prt_data.flags &= ~LONGINT;
+          prt_data.flags |= QUADINT;
+      }
+      else
+      {
+	    prt_data.flags |= (SHORTINT << (cp - flag_chars));
+      }
 	  fmt++;
 	}
 

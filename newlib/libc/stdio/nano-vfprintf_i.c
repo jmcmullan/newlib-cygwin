@@ -127,7 +127,7 @@ _printf_i (struct _reent *data, struct _prt_data_t *pdata, FILE *fp,
     case 'd':
     case 'i':
       _uquad = SARG (pdata->flags);
-      if ((long) _uquad < 0)
+      if ((long long) _uquad < 0)
 	{
 	  _uquad = -_uquad;
 	  pdata->l_buf[0] = '-';
